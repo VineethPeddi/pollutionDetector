@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<style>
+	.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+<style>
+nav {
+  float: left;
+  width: 60%;
+  height: 300px; /* only for demonstration, should be removed */
+  padding: 20px;
+}
+article {
+  float: right;
+  padding: 20px;
+  width: 40%;
+  height: 300px; /* only for demonstration, should be removed */
+}
+section:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+</style>
+<style>
+* {
+  box-sizing: border-box;
+}
+body{
+	background-color:LightGrey;
+}
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+.myTable td {
+  background-color: #f5f2f2;
+}
+#myTable tr.header, #myTable tr:hover {
+  background-color: mintcream;
+}
+
+</style>
+<body >
+<center><h1>PREDICTING AIR POLLUTION IN A SPECIFIC CITY</h1></center>
+
+
+<div class="split left">
+  <div class="centered">
+<a href="{% url 'myprojectapp:mappage1' %}">Click here to view the map</a>
+
+<br>
+<br>
+  </div>
+</div>
+<table class="center">
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_table}}
+ 
+</table>
+<br>
+<div style="text-align:center">  
+<input type="submit" value="Submit">
+</div>
+<br>
+<br>
+<div style="text-align:center">
+{% if result %}
+{{result}}
+{% endif %}
+{% if str %}
+{{str}}
+{% endif %}
+</div>
+<br>
+<br>
+<table id="myTable">
+  <tr class="header">
+  
+    <th style="width:25%">Air quality index levels of health concern</th>
+    <th style="width:15%;">Numerical value</th>
+    <th style="width:60%;">Meaning</th>
+  </tr>
+  <tr style="background-color: lightgreen">
+      
+	        <td>Good</td>
+    <td>0 to 50</td>
+    <td>Air quality is considered satisfactory, and air pollution poses little or no risk</td>
+  </tr>
+  <tr style="background-color: yellow">
+      
+	  <td>Moderate</td>
+    <td>51 to 100</td>
+    <td>Air quality is acceptable; however, for some pollutants there may be a moderate health concern for a very small number of people who are unusally sensitive to air pollution</td>
+  </tr><tr style="background-color: orange">
+      
+	  	  <td>Unhealthy for Sensitive Groups</td>
+    <td>101 to 150</td>
+    <td>Members of sensitive groups may experience health effects. The general public is not likely to be affected</td>
+  </tr><tr style="background-color: red">
+      
+	  	  <td>Unhealthy</td>
+    <td>151 to 200</td>
+    <td>Everyone may begin to experience health effects; members of sensitive groups may experience more serious health effects.</td>
+  </tr><tr style="background-color: mediumpurple">
+      
+	  	  	  <td>Very Unhealthy</td>
+    <td>201 to 300</td>
+    <td>Health alert; everyone may experience more serious health effects.</td>
+  </tr>
+  <tr style="background-color: mediumvioletred">
+      
+	  	  	  <td>Hazardous</td>
+    <td>301 to 500</td>
+    <td>Health warnings of emergency conditions. The entire population is more likely to be affected</td>
+  </tr>
+  </table>
+      
+<br>
+<br>
+
+<center><input type="text" style="width: 600px;" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name"></center>
+<table id="myTable" class="myTable" style="width: 600px; margin-left: auto;margin-right: auto;">
+  <tr class="header">
+  
+    <th style="width:10%">RANK</th>
+    <th style="width:50%;">STATE</th>
+    <th style="width:30%;">AQI</th>
+  </tr>
+  <tr>
+      
+	        <td>1</td>
+    <td>Andhra Pradesh</td>
+    <td>281</td>
+  </tr>
+  <tr>
+      
+	  <td>2</td>
+    <td>West Bengal</td>
+    <td>240</td>
+  </tr><tr>
+      
+	  	  <td>3</td>
+    <td>Uttar Pradesh</td>
+    <td>213</td>
+  </tr><tr>
+      
+	  	  <td>4</td>
+    <td>Odisha</td>
+    <td>180</td>
+  </tr><tr>
+      
+	  	  	  <td>5</td>
+    <td>Uttarakand</td>
+    <td>149</td>
+  </tr><tr>
+      
+	    	  <td>6</td>
+    <td>Assam</td>
+    <td>144</td>
+  </tr><tr>
+      
+	    	  <td>7</td>
+    <td>Haryana</td>
+    <td>144</td>
+  </tr><tr>
+     	  <td>8</td>
+    <td>Bihar</td>
+    <td>128</td>
+  </tr><tr>
+        <td>9</td>
+    <td>Jammu & Kashmir</td>
+    <td>120</td>
+  </tr><tr>
+     <td>10</td>
+    <td>Tripura</td>
+    <td>117</td>
+  </tr>
+  <tr>
+       	  <td>11</td>
+    <td>Rajasthan</td>
+    <td>113</td>
+  </tr><tr>
+       	  <td>12</td>
+    <td>Karnataka</td>
+    <td>111</td>
+  </tr><tr>
+        <td>13</td>
+    <td>Nagaland</td>
+    <td>109</td>
+  </tr><tr>
+      	  <td>14</td>
+    <td>Maharastra</td>
+    <td>107</td>
+  </tr><tr>
+       	  <td>15</td>
+    <td>Jharkhand</td>
+    <td>88</td>
+  </tr><tr>
+      	  <td>16</td>
+    <td>Chhatisgarh</td>
+    <td>84</td>
+	
+  </tr><tr>
+       <td>17</td>
+    <td>Telangana</td>
+    <td>82</td>
+  </tr><tr>
+      	  <td>18</td>
+    <td>Punjab</td>
+    <td>76</td>
+  </tr><tr>
+      <td>19</td>
+    <td>Kerala</td>
+    <td>73</td>
+  </tr><tr>
+       <td>20</td>
+    <td>Sikkim</td>
+    <td>73</td>
+  </tr><tr>
+        <td>21</td>
+    <td>Tamil Nadu</td>
+    <td>73</td>
+  </tr><tr>
+     <td>22</td>
+    <td>Meghalaya</td>
+    <td>65</td>
+  </tr><tr>
+       	  <td>23</td>
+    <td>Madhya Pradesh</td>
+    <td>64</td>
+  </tr><tr>
+      <td>24</td><td>Manipur</td>
+    <td>59</td>
+  </tr><tr>
+     	  <td>25</td>
+    <td>Himachal Pradesh</td>
+    <td>55</td>
+  </tr><tr>
+       	  <td>26</td>
+    <td>Gujarat</td>
+    <td>26</td>
+  </tr><tr>
+     	  <td>27</td>
+    <td>Goa</td>
+    <td>25.5</td>
+  </tr><tr>
+       <td>28</td>
+    <td>Mizoram</td>
+    <td>25</td>
+  </tr>
+</table>
+</body>
+
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
